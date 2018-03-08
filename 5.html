@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><!-- 关于计时器 -->
+<head>
+	<meta charset="UTF-8">
+	<title>TimeCount</title>
+
+	<style type="text/css">
+	p.inline {
+		display:inline;
+	}
+	</style>
+</head>
+<body onload="startTime()">
+	<p>点击下面的按钮，会在2秒后弹出警告框</p>
+	<button id="sett1">点击按钮1</button>
+	<p>------------------------------------------------</p>
+	<script type="text/javascript">
+		var settime1 = document.getElementById('sett1');
+		settime1.onclick = function() {
+			setTimeout("alert('2秒!')",2000);
+		} 
+	</script>
+
+	<p>点击下面按钮开始计时</p>
+	<input type="text" id="text1">
+	<button onclick="timeCount()">开始计时</button>
+	<p>------------------------------------------------</p>
+	<script type="text/javascript">
+		var s=0;
+		var t;
+		function timeCount() {
+			document.getElementById('text1').value=s
+			s+=1
+			t=setTimeout("timeCount()",1000)
+		}
+	</script>
+
+	<p>点击下面按钮开始计时或者停止计时</p>
+	<input type="text" id="text2">
+	<button onclick="timeCount()">开始计时</button>
+	<button onclick="stopCount()">停止计时</button>
+	<p>------------------------------------------------</p>
+	<script type="text/javascript">
+		var s=0;
+		var t;
+		function timeCount() {
+			document.getElementById('text2').value=s
+			s+=1
+			t=setTimeout("timeCount()",1000)
+		}
+		function stopCount() {
+			setTimeout("document.getElementById('text2').value=0",0)
+			clearTimeout(t)
+		}
+	</script>
+
+	<p class="inline">时间:</p>
+	<div id="txt"></div>
+	<p>------------------------------------------------</p>
+	<script type="text/javascript">
+		function startTime() {
+			var today = new Date()
+			var h = today.getHours()
+			var m = today.getMinutes()
+			var s = today.getSeconds()
+			document.getElementById('txt').innerHTML=h+":"+m+":"+s
+			setTimeout('startTime()',500)
+		}
+	</script>
+</body>
+</html>
